@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	//"sort"
 )
 
 type Estado struct{
@@ -93,8 +94,9 @@ func Right(root int) int {
 
 
 
-func os10maioresEstadosDoBrasil() ([10]string, error) {
-	var data [10]string
+func os10maioresEstadosDoBrasil() ([]string, error) {
+	//var data []string = []string{}
+	data := make([]string, 10)
 	estados:=todosEstados()
 	HeapSort(estados)
 	//os10estados := make(v:=todosEstados(), len(v)) 
@@ -103,7 +105,17 @@ func os10maioresEstadosDoBrasil() ([10]string, error) {
 		data[j] = estados[i].nome
 		j++
 	}
-	
+
+	// Outra opção é utilizar a função sort.SliceStable(slice interface{},function(i,j int) bool)
+	/*
+	estados := todosEstados()	
+	data := make([]string, 10)
+	sort.SliceStable(estados, func(i,j int) bool{
+		return estados[i].area > estados[j].area})
+	for i,est := range estados {
+		if i == 10 {break}
+		data[i] = est.nome 
+	}*/
 
 	return data, nil
 }
